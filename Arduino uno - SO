@@ -279,7 +279,7 @@ void loop() {
 
     if(digitalRead(buttonIn) == LOW) { // Si se presiona el botón "In"
       calculadora[0] = (calculadora[0] == 9) ? 0 : calculadora[0] + 1; // Incrementa el primer número
-      delay(200);
+		      delay(200);
     }
 
     if(digitalRead(buttonOp) == LOW) { // Si se presiona el botón "Op"
