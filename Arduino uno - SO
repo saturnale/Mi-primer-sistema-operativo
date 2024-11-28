@@ -271,72 +271,75 @@ void loop() {
     lcd.setCursor ( 0, 1 );
     lcd.print(calculadora[0]); //Muestra el primer numero en el LCD
 
-    if(digitalRead(buttonDec) == LOW) { // Si se presiona el bonoton de Decrementa, asignado para para el primer valor para la operación
-      calculadora[0] = (calculadora[0] == 0) ? 9 : calculadora[0] - 1;  // Decrementa el primer numero
+    if(digitalRead(buttonDec) == LOW) {  // Si se presiona el botón de Decrementa, asignado para para el primer número para la operación
+      calculadora[0] = (calculadora[0] == 0) ? 9 : calculadora[0] - 1;  // Decrementa el primer número
       delay(200); // Espera para evitar lecturas rápidas
     }
 
-    if(digitalRead(buttonIn) == LOW) {
-      calculadora[0] = (calculadora[0] == 9) ? 0 : calculadora[0] + 1; 
+    if(digitalRead(buttonIn) == LOW) { // Si se presiona el botón "In"
+      calculadora[0] = (calculadora[0] == 9) ? 0 : calculadora[0] + 1; // Incrementa el primer número
       delay(200);
     }
 
-    if(digitalRead(buttonOp) == LOW) {
+    if(digitalRead(buttonOp) == LOW) { // Si se presiona el botón "Op"
       lcd.setCursor ( 5, 1 );
-      lcd.print(operations[opIndex]);
-      opIndex = (opIndex == 3) ? 0 : opIndex + 1;
-      delay(200);
+      lcd.print(operations[opIndex]);  // Imprime el operador actual
+      opIndex = (opIndex == 3) ? 0 : opIndex + 1; // Cambia el operador
+      delay(200); 
     }
 
-    if(digitalRead(buttonDec2) == LOW){
-      calculadora[1] = (calculadora[1] == 0) ? 9 : calculadora[1] - 1; 
+    if(digitalRead(buttonDec2) == LOW){ // Si se presiona el botón "Dec2"
+      calculadora[1] = (calculadora[1] == 0) ? 9 : calculadora[1] - 1; // Decrementa el segundo número para la operación
       lcd.setCursor( 7, 1 );
-      lcd.print(calculadora[1]);
+      lcd.print(calculadora[1]); // Imprime el segundo número en el LCD
       delay(200);
     }
 
-    if(digitalRead(buttonIn2) == LOW){
-      calculadora[1] = (calculadora[1] == 9) ? 0 : calculadora[1] + 1;
+    if(digitalRead(buttonIn2) == LOW){ // Sise presiona el botón "In2"
+      calculadora[1] = (calculadora[1] == 9) ? 0 : calculadora[1] + 1; // Incrementará el segundo número
       lcd.setCursor( 7, 1 );
-      lcd.print(calculadora[1]);
+      lcd.print(calculadora[1]); // Imprime el segundo número
       delay(200);
     }
 
-    if(digitalRead(buttonRes) == LOW){
+    if(digitalRead(buttonRes) == LOW){  // Si se presiona el botón "Res"
       lcd.setCursor( 10, 1 );
-      lcd.print("= ");
-      float resultado = 0;
+      lcd.print("= "); // Imprimirá el signo de "="
+      float resultado = 0; // Se declara variable float, si es el resultado aparecen decimales
+
+      // Dependiendo que operación seleccione el usuario, realizará la operación correspondiente
       switch(operations[opIndex - 1]){
         case '+':
-          resultado = calculadora[0] + calculadora[1];
+          resultado = calculadora[0] + calculadora[1];  // Suma
           lcd.setCursor( 12, 1 );
-          lcd.print(resultado);
+          lcd.print(resultado); // Imprime resultado
         break;
         case '-':
-          resultado = calculadora[0] - calculadora[1];
+          resultado = calculadora[0] - calculadora[1];  // Resta
           lcd.setCursor( 12, 1 );
-          lcd.print(resultado);
+          lcd.print(resultado);  // Imprime resultado
         break;
         case '*':
-          resultado = calculadora[0] * calculadora[1];
+          resultado = calculadora[0] * calculadora[1];  // Multiplicación
           lcd.setCursor( 12, 1 );
-          lcd.print(resultado);
+          lcd.print(resultado);  // Imprime resultado
         break;
         default:
           break;
       }
+
+      // La división se hace de manera especial
       if(opIndex == 0){
         Serial.println("division");
-        if(calculadora[0] == 0 || calculadora[1] == 0){
+        if(calculadora[0] == 0 || calculadora[1] == 0){  // Verficar si hay división por 0
           lcd.setCursor( 12, 1 );
-          lcd.print("Error");
+          lcd.print("Error"); // Si es asi, muestra error
           
         }else{
-          resultado = calculadora[0] / calculadora[1];
+          resultado = calculadora[0] / calculadora[1];  // Sno es asi, realiza la división
           lcd.setCursor( 12, 1 );
-          lcd.print(resultado);
+          lcd.print(resultado); muestra el resultado
         }
-        Serial.print(resultado);
       }
     }
     }
