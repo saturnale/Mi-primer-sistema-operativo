@@ -1,8 +1,9 @@
-/* Autores: 
-  Karen Alejandra Hernández Tomas
-  Stephanie Verduzco de la Mora
-  David Gustavo Fajardo Plascencia
-  Angel Daniel Guerrero Mancilla */
+/* Autores:                                   // Universidad de Colima - Facultad de Telemática
+  Karen Alejandra Hernández Tomas             // Carrera: Ingeniería de Software - Primer semestre - Grupo I
+  Stephanie Verduzco de la Mora               
+  David Gustavo Fajardo Plascencia            // Mtro. Castellanos Berján Esli
+  Angel Daniel Guerrero Mancilla              // Materia : Sistemas Operativos
+  Diego Rincón Gallegos */
 
 // Librerias ---------------------------------------------------------------------------------
 #include <Wire.h>     // Sirve para la comunicación con dispositivos, por ejemplo, pantallas        
